@@ -1,0 +1,19 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/admin-portal",
+      "destination": "/admin-portal/"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/admin-portal/",
+      "destination": "/admin-portal/index.html"
+    },
+    {
+      "source": "/admin-portal.html",
+      "destination": "/admin-portal/index.html"
+    }
+  ]
+}

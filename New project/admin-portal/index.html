@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Saarthi | Admin Portal</title>
+    <meta
+      name="description"
+      content="Admin portal to approve or reject PG listings before showing them in the Finder."
+    />
+    <link rel="icon" href="../assets/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../admin.css" />
+  </head>
+  <body>
+    <header class="admin-topbar">
+      <div class="container admin-nav">
+        <a href="../index.html" class="brand-link">
+          <img src="../assets/brand-logo.svg" alt="Local Saarthi" class="brand-logo" />
+        </a>
+        <div id="admin-nav-actions" class="admin-nav-actions hidden" style="display: none">
+          <button id="logout-btn" class="btn btn-ghost hidden" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <section id="login-view" class="login-wrap">
+        <article class="card login-card">
+          <p class="kicker">Admin Portal</p>
+          <h1>Secure Login</h1>
+          <p class="subtext">Only authorized admin can approve or reject owner listings.</p>
+          <form id="login-form" class="login-form">
+            <label>
+              Admin ID
+              <input id="admin-id" type="text" autocomplete="username" required />
+            </label>
+            <label>
+              Password
+              <input id="admin-password" type="password" autocomplete="current-password" required />
+            </label>
+            <button type="submit" class="btn">Login</button>
+            <p id="login-message" class="login-message"></p>
+          </form>
+        </article>
+      </section>
+
+      <section id="dashboard-view" class="hidden" style="display: none">
+        <section class="admin-hero">
+          <p class="kicker">Admin Portal</p>
+          <h1>Approve PG Listings Before Publishing</h1>
+          <p>Only approved listings will appear in PG Finder search results.</p>
+        </section>
+
+        <section class="stats-grid">
+          <article class="stat-card">
+            <p id="total-count" class="stat-value">0</p>
+            <p class="stat-label">Total Listings</p>
+          </article>
+          <article class="stat-card">
+            <p id="pending-count" class="stat-value">0</p>
+            <p class="stat-label">Pending</p>
+          </article>
+          <article class="stat-card">
+            <p id="approved-count" class="stat-value">0</p>
+            <p class="stat-label">Approved</p>
+          </article>
+          <article class="stat-card">
+            <p id="rejected-count" class="stat-value">0</p>
+            <p class="stat-label">Rejected</p>
+          </article>
+        </section>
+
+        <section class="admin-grid">
+          <article class="card">
+            <h2>Pending Approvals</h2>
+            <p class="subtext">Review and take action on new owner submissions.</p>
+            <div id="pending-list" class="listing-list"></div>
+          </article>
+
+          <article class="card">
+            <h2>Recently Approved</h2>
+            <p class="subtext">These listings are now visible in PG Finder.</p>
+            <div id="approved-list" class="listing-list"></div>
+          </article>
+        </section>
+
+        <section class="admin-grid single">
+          <article class="card">
+            <h2>Recently Rejected</h2>
+            <p class="subtext">Rejected listings are not shown in PG Finder.</p>
+            <div id="rejected-list" class="listing-list"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="../admin.js"></script>
+  </body>
+</html>

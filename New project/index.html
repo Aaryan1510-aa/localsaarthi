@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Saarthi | Verified Student Discovery Platform</title>
+    <meta
+      name="description"
+      content="Local Saarthi is a verified hyperlocal review and discovery platform for universities. Find top PGs near your college with trusted student ratings."
+    />
+    <meta name="theme-color" content="#7b4dff" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a href="#home" class="brand">
+          <img src="assets/brand-logo.svg" alt="Local Saarthi" class="brand-logo" />
+        </a>
+
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#product">Product</a>
+          <a href="#demo">PG Finder</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button type="button" id="login-btn" class="btn btn-ghost auth-trigger" data-auth-mode="login">Login</button>
+          <button type="button" id="signup-btn" class="btn btn-outline auth-trigger" data-auth-mode="signup">Sign Up</button>
+          <div id="profile-menu" class="profile-menu hidden">
+            <button id="profile-pill" type="button" class="profile-pill"></button>
+            <div id="profile-dropdown" class="profile-dropdown hidden">
+              <button id="logout-btn" type="button" class="profile-dropdown-item">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero container reveal" data-delay="0.08">
+        <h1>
+          The Trusted Platform for <span>Campus Life Decisions</span>
+        </h1>
+        <p class="subtitle">
+          Local Saarthi helps students discover the best PGs, societies,
+          canteens, and events through structured ratings and verified student
+          reviews.
+        </p>
+        <div class="hero-cta">
+          <a href="#demo" class="btn">Search PG Near College</a>
+          <a href="#about" class="btn btn-ghost">Learn More</a>
+        </div>
+      </section>
+
+      <section id="demo" class="container section card demo-section reveal" data-delay="0.12">
+        <div class="section-head compact">
+          <p class="section-kicker">Core Feature Demo</p>
+          <h2>Fresher PG Finder</h2>
+          <p>
+            Enter your college name to discover nearby PG options with verified
+            ratings.
+          </p>
+        </div>
+
+        <div class="search-box">
+          <label for="college-search">College Name / Location</label>
+          <div class="search-row">
+            <input
+              id="college-search"
+              type="text"
+              placeholder="e.g., Dyal Singh College or North Campus Delhi"
+              autocomplete="off"
+            />
+            <button id="search-btn" class="btn">Search</button>
+          </div>
+          <p class="helper-text">
+            Try: Delhi University North Campus, IIT Bombay, Christ University
+          </p>
+        </div>
+
+        <div class="tool-row">
+          <label>
+            Pricing
+            <select id="pricing-filter">
+              <option value="all">All</option>
+              <option value="low">Budget (<= 10k)</option>
+              <option value="mid">Mid (11k - 13k)</option>
+              <option value="high">Premium (>= 14k)</option>
+            </select>
+          </label>
+          <label>
+            Category
+            <select id="category-filter">
+              <option value="all">All PGs</option>
+              <option value="girls-only">Girls Only</option>
+            </select>
+          </label>
+          <label>
+            Sort
+            <select id="sort-select">
+              <option value="rating">Top Rated</option>
+              <option value="distance">Nearest First</option>
+              <option value="budget">Lowest Budget</option>
+            </select>
+          </label>
+          <button id="clear-filters" class="btn btn-ghost" type="button">Reset</button>
+        </div>
+
+        <div class="result-meta">
+          <p id="result-count">0 results</p>
+          <button id="show-saved" class="btn btn-ghost" type="button">Saved PGs (0)</button>
+        </div>
+        <div id="results" class="results" aria-live="polite"></div>
+
+        <div id="saved-panel" class="saved-panel hidden">
+          <h3>Saved PGs</h3>
+          <div id="saved-list" class="saved-list"></div>
+        </div>
+      </section>
+
+      <section id="reviews" class="container section card reveal" data-delay="0.13">
+        <div class="section-head compact">
+          <p class="section-kicker">PG Reviews</p>
+          <h2>Student Reviews for PGs</h2>
+          <p>Share your experience to help other students make better decisions.</p>
+        </div>
+
+        <form id="pg-review-form" class="pg-review-form">
+          <input id="review-pg-name" type="text" placeholder="PG Name" required />
+          <input id="review-college-name" type="text" placeholder="College / Location" required />
+          <div class="star-field star-field-wide">
+            <span class="star-label">Overall Rating</span>
+            <div class="star-rating" data-target="review-rating" aria-label="Overall Rating">
+              <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+              <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+              <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+              <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+              <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+            </div>
+            <input id="review-rating" type="hidden" required />
+          </div>
+          <div class="review-metrics-grid">
+            <div class="star-field">
+              <span class="star-label">Food Quality</span>
+              <div class="star-rating" data-target="review-food-quality" aria-label="Food Quality rating">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+                <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+              </div>
+              <input id="review-food-quality" type="hidden" required />
+            </div>
+            <div class="star-field">
+              <span class="star-label">Safety</span>
+              <div class="star-rating" data-target="review-safety" aria-label="Safety rating">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+                <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+              </div>
+              <input id="review-safety" type="hidden" required />
+            </div>
+            <div class="star-field">
+              <span class="star-label">Comfort</span>
+              <div class="star-rating" data-target="review-comfort" aria-label="Comfort rating">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+                <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+              </div>
+              <input id="review-comfort" type="hidden" required />
+            </div>
+            <div class="star-field">
+              <span class="star-label">Value for Money</span>
+              <div class="star-rating" data-target="review-value" aria-label="Value for Money rating">
+                <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+                <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+                <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+                <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+                <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+              </div>
+              <input id="review-value" type="hidden" required />
+            </div>
+          </div>
+          <textarea
+            id="review-comment"
+            rows="3"
+            placeholder="Write a short review..."
+            required
+          ></textarea>
+          <button type="submit" class="btn">Submit Review</button>
+        </form>
+
+        <div class="review-feed-head">
+          <h3>Recent Reviews</h3>
+          <p id="review-count">0 reviews</p>
+        </div>
+        <div id="reviews-list" class="reviews-list"></div>
+      </section>
+
+      <section id="about" class="container section reveal" data-delay="0.1">
+        <div class="section-head">
+          <p class="section-kicker">About Us</p>
+          <h2>Built for Students, Powered by Verified Student Voices</h2>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Our Mission</h3>
+            <p>
+              To remove chaos from student decision-making by offering trusted,
+              hyperlocal and structured insights for every major part of campus
+              life.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>What We Solve</h3>
+            <p>
+              Freshers currently depend on rumors, random threads and spam groups
+              to find PGs, clubs or events. Local Saarthi creates one reliable,
+              data-backed system.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Who We Serve</h3>
+            <p>
+              Freshers, current students, student societies, event organizers,
+              and hyperlocal businesses that want to reach the right campus
+              audience.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="product" class="container section reveal" data-delay="0.12">
+        <div class="section-head">
+          <p class="section-kicker">Product</p>
+          <h2>Three Core Pillars of Local Saarthi</h2>
+        </div>
+        <div class="product-grid">
+          <article class="panel">
+            <h3>1. Societies & Clubs</h3>
+            <p>
+              Ratings on CV value, work culture, leadership quality, and alumni
+              network strength.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>2. Hyperlocal Amenities</h3>
+            <p>
+              Trusted ratings for PGs, canteens and hangout spots with focus on
+              student budget and safety.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>3. Events & Fests</h3>
+            <p>
+              Centralized campus calendar with hype scores, attendance feedback,
+              and recommendations.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section reveal" data-delay="0.13">
+        <div class="section-head">
+          <p class="section-kicker">Campus Life</p>
+          <h2>Inside the Student Ecosystem</h2>
+        </div>
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
+              alt="Students collaborating in a college common area"
+              loading="lazy"
+            />
+          </article>
+          <article class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80"
+              alt="University lecture hall with students"
+              loading="lazy"
+            />
+          </article>
+          <article class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1200&q=80"
+              alt="Students outside campus buildings"
+              loading="lazy"
+            />
+          </article>
+        </div>
+      </section>
+
+      <section id="roadmap" class="container section reveal" data-delay="0.1">
+        <div class="section-head">
+          <p class="section-kicker">Roadmap</p>
+          <h2>Execution Plan</h2>
+        </div>
+        <div class="roadmap-grid">
+          <article class="panel">
+            <h3>Phase 1: Pilot</h3>
+            <p>Launch in one campus hub and onboard first PG and student cohort.</p>
+          </article>
+          <article class="panel">
+            <h3>Phase 2: Scale Cluster</h3>
+            <p>Expand to nearby university clusters with the same playbook.</p>
+          </article>
+          <article class="panel">
+            <h3>Phase 3: Multi-City Rollout</h3>
+            <p>Replicate code and go-to-market model across major education cities.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section reveal" data-delay="0.11">
+        <div class="story-section">
+          <p class="story-badge">Our Story</p>
+          <h2>Built by Students, for Students</h2>
+          <blockquote>
+            "Local Saarthi was built to solve a simple problem - students
+            deserve trustworthy information about their campus life."
+          </blockquote>
+          <p class="story-copy">
+            We are starting with PG discovery - the most painful problem for
+            students relocating to a new city. From there, we are expanding into
+            cafes, student societies, and campus events to build a complete
+            campus life platform.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="container section reveal" data-delay="0.12">
+        <div class="partner-banner">
+          <span class="orb orb-left" aria-hidden="true"></span>
+          <span class="orb orb-right" aria-hidden="true"></span>
+          <p class="partner-kicker">Local Saarthi</p>
+          <h2>Join the Future of Campus Discovery.</h2>
+          <p class="partner-subtitle">
+            PG owners can partner with us to promote listings to verified
+            students and drive quality leads across campus clusters.
+          </p>
+          <div class="partner-actions">
+            <button type="button" id="book-call-trigger" class="btn btn-light">Book Call Now</button>
+            <a href="owner.html" class="btn btn-outline-light">Partner as PG Owner</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="auth-modal" class="auth-modal hidden" aria-hidden="true">
+      <div id="auth-overlay" class="auth-overlay"></div>
+      <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <button id="auth-close" type="button" class="auth-close" aria-label="Close">×</button>
+        <p id="auth-kicker" class="section-kicker">Student Access</p>
+        <h2 id="auth-title">Create your Local Saarthi profile</h2>
+        <p class="auth-copy">
+          Sign up with your student details. Profiles using an official `.edu` email get a blue verified tick.
+        </p>
+
+        <form id="auth-form" class="auth-form">
+          <input id="auth-name" type="text" placeholder="Full Name" required />
+          <input id="auth-phone" type="tel" placeholder="Phone Number" required />
+          <input id="auth-email" type="email" placeholder="Email / .edu Email" required />
+          <input id="auth-password" type="password" placeholder="Password" required />
+          <button id="auth-submit" type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <p class="auth-note">Demo auth flow only. Profile is stored locally in this browser.</p>
+      </section>
+    </div>
+
+    <div id="call-modal" class="auth-modal hidden" aria-hidden="true">
+      <div id="call-overlay" class="auth-overlay"></div>
+      <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="call-title">
+        <button id="call-close" type="button" class="auth-close" aria-label="Close">×</button>
+        <p class="section-kicker">Callback Request</p>
+        <h2 id="call-title">Book a call for your PG promotion</h2>
+        <p class="auth-copy">
+          Share your PG details and preferred timing. We will contact you for promotion and listing support.
+        </p>
+
+        <form id="call-form" class="auth-form">
+          <input id="call-pg-name" type="text" placeholder="PG Name" required />
+          <input id="call-owner-name" type="text" placeholder="Your Name" required />
+          <input id="call-phone" type="tel" placeholder="Phone Number" required />
+          <input id="call-time" type="text" placeholder="Available Timing (e.g. 4 PM - 7 PM)" required />
+          <button type="submit" class="btn">Submit Request</button>
+        </form>
+
+        <p id="call-success" class="auth-note hidden">Request submitted. We will call you in your available time slot.</p>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/brand-logo.svg" alt="Local Saarthi" class="footer-logo-image" />
+          </div>
+          <p>The trusted platform for campus life discovery.</p>
+          <div class="social-row">
+            <a href="#" aria-label="X">X</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Instagram">IG</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#demo">Find PGs</a>
+          <a href="#reviews">PG Reviews</a>
+          <a href="#about">About</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>For PG Owners</h4>
+          <a href="owner.html">Partner With Us</a>
+          <a href="mailto:founder@localsaarthi.com?subject=Book%2015-min%20Demo%20Call">Book Demo Call</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#contact">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>Copyright © 2026 Local Saarthi. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

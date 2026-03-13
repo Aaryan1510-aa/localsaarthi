@@ -1,0 +1,185 @@
+:root {
+  --bg: #f7f4ff;
+  --surface: #ffffff;
+  --text: #211a46;
+  --muted: #6d6788;
+  --line: #e5def8;
+  --brand: #7b4dff;
+  --brand-strong: #5f35d4;
+  --shadow: 0 14px 40px rgba(57, 34, 120, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 8% 10%, #e9deff 0, transparent 34%),
+    radial-gradient(circle at 88% 14%, #efe6ff 0, transparent 32%),
+    radial-gradient(circle at 48% 102%, #f3edff 0, transparent 38%),
+    linear-gradient(180deg, #fcfbff 0%, #f7f3ff 48%, #fdfcff 100%),
+    var(--bg);
+}
+
+.container {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.topbar {
+  border-bottom: 1px solid #e6dff8;
+  background: rgba(247, 244, 255, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.nav {
+  min-height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  height: 42px;
+}
+
+.main {
+  padding: 1.4rem 0 2rem;
+}
+
+.hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.kicker {
+  display: inline-block;
+  padding: 0.33rem 0.72rem;
+  border-radius: 999px;
+  background: #ece4ff;
+  color: var(--brand-strong);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.hero p {
+  margin-top: 0.65rem;
+  color: var(--muted);
+}
+
+.grid {
+  margin-top: 1.05rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.details {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.details div {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.7rem;
+  background: #fcfaff;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.details span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.details strong {
+  font-size: 1rem;
+}
+
+.form {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+input {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.7rem 0.75rem;
+  font: inherit;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(123, 77, 255, 0.14);
+}
+
+.btn {
+  border: 0;
+  border-radius: 12px;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  background: var(--brand);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn:hover {
+  background: var(--brand-strong);
+}
+
+.btn-ghost {
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.message {
+  margin: 0;
+  color: var(--brand-strong);
+  font-size: 0.86rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

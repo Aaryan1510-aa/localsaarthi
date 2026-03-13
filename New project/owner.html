@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Saarthi | PG Owner Portal</title>
+    <meta
+      name="description"
+      content="PG Owner Portal for Local Saarthi. List your PG with photos, pricing, and facilities to reach verified college students."
+    />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="owner.css" />
+  </head>
+  <body>
+    <header class="owner-topbar">
+      <div class="container owner-nav">
+        <a href="index.html" class="brand-link">
+          <img src="assets/brand-logo.svg" alt="Local Saarthi" class="brand-logo" />
+        </a>
+        <div class="owner-nav-actions">
+          <a href="index.html#contact" class="btn btn-ghost">Back to Website</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container owner-main">
+      <section class="owner-hero">
+        <p class="kicker">PG Owner Portal</p>
+        <h1>List Your PG and Reach Verified Students</h1>
+        <p>
+          Fill your property details, add photos, set monthly rent, and publish
+          your listing request for Local Saarthi onboarding.
+        </p>
+      </section>
+
+      <section class="owner-grid">
+        <article class="card form-card">
+          <h2>PG Listing Form</h2>
+          <form id="owner-form" class="owner-form">
+            <div class="row two">
+              <label>
+                Owner Name
+                <input id="owner-name" type="text" required />
+              </label>
+              <label>
+                Contact Number
+                <input id="owner-phone" type="tel" required />
+              </label>
+            </div>
+
+            <div class="row two">
+              <label>
+                Email
+                <input id="owner-email" type="email" required />
+              </label>
+              <label>
+                PG Name
+                <input id="pg-name" type="text" required />
+              </label>
+            </div>
+
+            <div class="row two">
+              <label>
+                College / Location Served
+                <input id="pg-location" type="text" placeholder="e.g., Dyal Singh College, Delhi" required />
+              </label>
+              <label>
+                Full Address
+                <input id="pg-address" type="text" required />
+              </label>
+            </div>
+
+            <div class="row three">
+              <label>
+                Starting Rent (INR / month)
+                <input id="pg-rent" type="number" min="1000" required />
+              </label>
+              <label>
+                Security Deposit (INR)
+                <input id="pg-deposit" type="number" min="0" required />
+              </label>
+              <label>
+                Room Type
+                <select id="pg-room-type" required>
+                  <option value="">Select</option>
+                  <option>Single Sharing</option>
+                  <option>Double Sharing</option>
+                  <option>Triple Sharing</option>
+                  <option>Mixed</option>
+                </select>
+              </label>
+            </div>
+
+            <fieldset class="facilities">
+              <legend>Facilities Provided</legend>
+              <label><input type="checkbox" value="Wi-Fi" /> Wi-Fi</label>
+              <label><input type="checkbox" value="Meals" /> Meals</label>
+              <label><input type="checkbox" value="AC" /> AC</label>
+              <label><input type="checkbox" value="Laundry" /> Laundry</label>
+              <label><input type="checkbox" value="CCTV" /> CCTV</label>
+              <label><input type="checkbox" value="Power Backup" /> Power Backup</label>
+              <label><input type="checkbox" value="Housekeeping" /> Housekeeping</label>
+              <label><input type="checkbox" value="Gym" /> Gym</label>
+            </fieldset>
+
+            <label>
+              PG Photos (up to 6)
+              <input id="pg-photos" type="file" accept="image/*" multiple />
+            </label>
+            <div id="photo-preview" class="photo-preview"></div>
+
+            <label>
+              Description
+              <textarea id="pg-description" rows="4" placeholder="Tell students what makes your PG better..." required></textarea>
+            </label>
+
+            <button type="submit" class="btn">Submit Listing Request</button>
+            <p id="owner-message" class="message"></p>
+          </form>
+        </article>
+
+        <article class="card feed-card">
+          <h2>Submitted Listings</h2>
+          <p class="subtext">Track your listing status: pending, approved, or rejected.</p>
+          <div id="owner-listings" class="owner-listings"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="owner.js"></script>
+  </body>
+</html>

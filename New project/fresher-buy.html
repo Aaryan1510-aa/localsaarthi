@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Saarthi | Fresher Buy</title>
+    <meta
+      name="description"
+      content="Complete your PG booking request via Fresher Buy interface."
+    />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fresher-buy.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="index.html" class="brand-link">
+          <img src="assets/brand-logo.svg" alt="Local Saarthi" class="brand-logo" />
+        </a>
+        <a href="index.html#demo" class="btn btn-ghost">Back to PG Finder</a>
+      </div>
+    </header>
+
+    <main class="container main">
+      <section class="hero">
+        <p class="kicker">Fresher Buy</p>
+        <h1>Complete Your PG Request</h1>
+        <p>Selected PG details are pre-filled below. Confirm to continue onboarding.</p>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Selected PG</h2>
+          <div class="details">
+            <div>
+              <span>PG Name</span>
+              <strong id="pg-name">-</strong>
+            </div>
+            <div>
+              <span>Location</span>
+              <strong id="pg-location">-</strong>
+            </div>
+            <div>
+              <span>Starting Rent</span>
+              <strong id="pg-price">-</strong>
+            </div>
+            <div>
+              <span>Rating</span>
+              <strong id="pg-rating">-</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Fresher Details</h2>
+          <form id="buy-form" class="form">
+            <label>
+              Full Name
+              <input id="student-name" type="text" required />
+            </label>
+            <label>
+              Contact Number
+              <input id="student-phone" type="tel" required />
+            </label>
+            <label>
+              College
+              <input id="student-college" type="text" required />
+            </label>
+            <label>
+              Move-in Month
+              <input id="student-month" type="month" required />
+            </label>
+            <button type="submit" class="btn">Confirm Fresher Buy</button>
+            <p id="buy-message" class="message"></p>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <script src="fresher-buy.js"></script>
+  </body>
+</html>
